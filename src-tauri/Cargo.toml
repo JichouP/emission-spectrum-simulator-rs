@@ -18,7 +18,7 @@ tauri-build = { version = "1.1.1", features = [] }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.1.1", features = ["api-all"] }
-emission-spectrum-lib-rs = { git = "https://github.com/JichouP/emission-spectrum-lib-rs", rev = "e53a2cfab1cf7ea6ed5803588c0287c61f344bd8" }
+emission-spectrum-lib-rs = { git = "https://github.com/JichouP/emission-spectrum-lib-rs", rev = "5fe4566" }
 
 [features]
 # by default Tauri runs in production mode

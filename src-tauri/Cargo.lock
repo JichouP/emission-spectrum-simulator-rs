@@ -607,9 +607,11 @@ checksum = "4ef6b89e5b37196644d8796de5268852ff179b44e96276cf4290264843743bb7"
 [[package]]
 name = "emission-spectrum-lib-rs"
 version = "0.1.0"
-source = "git+https://github.com/JichouP/emission-spectrum-lib-rs?rev=e53a2cfab1cf7ea6ed5803588c0287c61f344bd8#e53a2cfab1cf7ea6ed5803588c0287c61f344bd8"
+source = "git+https://github.com/JichouP/emission-spectrum-lib-rs?rev=5fe4566#5fe4566e3ad5648376157a9e475ebcf8586131eb"
 dependencies = [
  "rayon",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
