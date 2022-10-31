@@ -8,7 +8,7 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts';
-import fetchCalculate, { CalcConfig } from './hooks/fetchCalculate';
+import fetchCalculate, { CalcConfig } from '../hooks/fetchCalculate';
 
 type Props = {
   config: CalcConfig;
@@ -25,7 +25,7 @@ const Plot: FC<Props> = ({ config }) => {
   }, []);
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer>
       <ScatterChart>
         <CartesianGrid />
         <XAxis
