@@ -5,7 +5,7 @@ export type CalcConfig = {
   tV: number;
   waveLengthStart: number;
   waveLengthRange: number;
-  resolution: number;
+  numberOfDivision: number;
   fwhm: number;
 };
 
@@ -14,7 +14,7 @@ const fetchCalculate = async ({
   tV,
   waveLengthStart,
   waveLengthRange,
-  resolution,
+  numberOfDivision,
   fwhm,
 }: CalcConfig) => {
   return tauri
@@ -23,7 +23,7 @@ const fetchCalculate = async ({
       tV,
       waveLengthStart,
       waveLengthRange,
-      resolution,
+      numberOfDivision,
       fwhm,
     })
     .then((v) => v.map(([x, y]) => ({ x: x * 1e9, y })));

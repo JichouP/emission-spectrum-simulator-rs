@@ -6,11 +6,11 @@ pub fn calculate(
     t_v: f64,
     wave_length_start: f64,
     wave_length_range: f64,
-    resolution: f64,
+    number_of_division: f64,
     fwhm: f64,
 ) -> Vec<(f64, f64)> {
-    let increment = wave_length_range / resolution;
-    let wave_lengths: Vec<f64> = (0..resolution as usize)
+    let increment = wave_length_range / number_of_division;
+    let wave_lengths: Vec<f64> = (0..number_of_division as usize)
         .map(|v| wave_length_start + increment * v as f64)
         .collect();
 

@@ -9,7 +9,7 @@ function App() {
           tV: 0.1,
           waveLengthStart: 200e-9,
           waveLengthRange: 12e-9,
-          resolution: 1000,
+          numberOfDivision: 1000,
           fwhm: 1e-9,
         }}
         referenceData={[]}
