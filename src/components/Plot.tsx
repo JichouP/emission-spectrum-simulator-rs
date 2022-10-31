@@ -9,20 +9,16 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts';
-import fetchCalculate from '../hooks/fetchCalculate';
+import fetchCalculate from '../cmd/fetchCalculate';
 import { useRecoilState } from 'recoil';
 import calcConfigState from '../atoms/calcConfigState';
+import csvDataState, { CsvData } from '../atoms/csvDataState';
 
-type Props = {
-  referenceData: Awaited<ReturnType<typeof fetchCalculate>>;
-};
-
-const Plot: FC<Props> = () => {
+const Plot: FC = () => {
   const [config] = useRecoilState(calcConfigState);
+  const [csvData] = useRecoilState(csvDataState);
 
-  const [data, setData] = useState<Awaited<ReturnType<typeof fetchCalculate>>>(
-    []
-  );
+  const [data, setData] = useState<CsvData>([]);
 
   useEffect(() => {
     const newConfig = {
@@ -60,6 +56,13 @@ const Plot: FC<Props> = () => {
           name="Result"
           data={data}
           fill="#8884d8"
+          isAnimationActive={false}
+          line
+        />
+        <Scatter
+          name="Experiment"
+          data={csvData}
+          fill="#d88a84"
           isAnimationActive={false}
           line
         />
