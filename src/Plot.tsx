@@ -6,6 +6,7 @@ import {
   ScatterChart,
   XAxis,
   YAxis,
+  ZAxis,
 } from 'recharts';
 import fetchCalculate, { CalcConfig } from './hooks/fetchCalculate';
 
@@ -37,12 +38,14 @@ const Plot: FC<Props> = ({ config }) => {
             (dataMax: number) => Math.round(dataMax),
           ]}
         />
-        <YAxis type="number" dataKey="y" />
+        <YAxis type="number" dataKey="y" domain={[0, 1]} />
+        <ZAxis range={[10]}></ZAxis>
         <Scatter
           name="Result"
           data={data}
           fill="#8884d8"
           isAnimationActive={false}
+          line
         />
       </ScatterChart>
     </ResponsiveContainer>
