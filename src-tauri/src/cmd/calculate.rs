@@ -7,13 +7,12 @@ pub fn calculate(
     wave_length_start: f64,
     wave_length_range: f64,
     resolution: f64,
+    fwhm: f64,
 ) -> Vec<(f64, f64)> {
     let increment = wave_length_range / resolution;
     let wave_lengths: Vec<f64> = (0..resolution as usize)
         .map(|v| wave_length_start + increment * v as f64)
         .collect();
-
-    println!("{:?}", wave_lengths.len());
 
     let config = CalcConfig {
         dunham_expression_params_u: vec![
@@ -26,7 +25,7 @@ pub fn calculate(
             vec![1.4172, -0.0184, 0.00011],
             vec![-6.5e-6],
         ],
-        fwhm: 5.0e-10,
+        fwhm,
         lu: 2.0,
         ll: 1.0,
         q: vec![
