@@ -10,7 +10,10 @@ mod cmd;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![cmd::calculate::calculate])
+        .invoke_handler(tauri::generate_handler![
+            cmd::calculate::calculate,
+            cmd::read_csv::read_csv
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
