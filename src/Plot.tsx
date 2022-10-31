@@ -16,7 +16,7 @@ type Props = {
 
 const Plot: FC<Props> = ({ config }) => {
   const [data, setData] = useState<Awaited<ReturnType<typeof fetchCalculate>>>(
-    [],
+    []
   );
 
   useEffect(() => {
@@ -24,24 +24,24 @@ const Plot: FC<Props> = ({ config }) => {
   }, []);
 
   return (
-    <ResponsiveContainer width='100%' height='100%'>
+    <ResponsiveContainer width="100%" height="100%">
       <ScatterChart>
         <CartesianGrid />
         <XAxis
-          type='number'
-          dataKey='x'
-          name='Wavelength'
-          unit='nm'
+          type="number"
+          dataKey="x"
+          name="Wavelength"
+          unit="nm"
           domain={[
             (dataMin: number) => Math.round(dataMin),
             (dataMax: number) => Math.round(dataMax),
           ]}
         />
-        <YAxis type='number' dataKey='y' />
+        <YAxis type="number" dataKey="y" />
         <Scatter
-          name='Result'
+          name="Result"
           data={data}
-          fill='#8884d8'
+          fill="#8884d8"
           isAnimationActive={false}
         />
       </ScatterChart>

@@ -19,7 +19,7 @@ const ScatterPlot = () => {
 
   return (
     <div>
-      <svg ref={svg} id='plot' width={500} height={200}></svg>
+      <svg ref={svg} id="plot" width={500} height={200}></svg>
     </div>
   );
 };
