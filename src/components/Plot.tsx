@@ -8,14 +8,17 @@ import {
   YAxis,
   ZAxis,
 } from 'recharts';
-import fetchCalculate, { CalcConfig } from '../hooks/fetchCalculate';
+import fetchCalculate from '../hooks/fetchCalculate';
+import { useRecoilState } from 'recoil';
+import calcConfigState from '../atoms/calcConfigState';
 
 type Props = {
-  config: CalcConfig;
   referenceData: Awaited<ReturnType<typeof fetchCalculate>>;
 };
 
-const Plot: FC<Props> = ({ config }) => {
+const Plot: FC<Props> = () => {
+  const [config] = useRecoilState(calcConfigState);
+
   const [data, setData] = useState<Awaited<ReturnType<typeof fetchCalculate>>>(
     []
   );
