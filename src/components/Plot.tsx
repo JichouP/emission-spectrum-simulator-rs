@@ -4,6 +4,7 @@ import {
   ResponsiveContainer,
   Scatter,
   ScatterChart,
+  Tooltip,
   XAxis,
   YAxis,
   ZAxis,
@@ -24,8 +25,19 @@ const Plot: FC<Props> = () => {
   );
 
   useEffect(() => {
-    fetchCalculate(config).then(setData);
-  }, []);
+    const newConfig = {
+      tR: config.tR * Math.pow(10, config.tRExp),
+      tV: config.tV * Math.pow(10, config.tVExp),
+      waveLengthStart:
+        config.waveLengthStart * Math.pow(10, config.waveLengthStartExp),
+      waveLengthRange:
+        config.waveLengthRange * Math.pow(10, config.waveLengthRangeExp),
+      numberOfDivision:
+        config.numberOfDivision * Math.pow(10, config.numberOfDivisionExp),
+      fwhm: config.fwhm * Math.pow(10, config.fwhmExp),
+    };
+    fetchCalculate(newConfig).then(setData);
+  }, [config]);
 
   return (
     <ResponsiveContainer>
@@ -43,6 +55,7 @@ const Plot: FC<Props> = () => {
         />
         <YAxis type="number" dataKey="y" domain={[0, 1]} />
         <ZAxis range={[10]}></ZAxis>
+        <Tooltip cursor={{ strokeDasharray: '3 3' }}></Tooltip>
         <Scatter
           name="Result"
           data={data}
