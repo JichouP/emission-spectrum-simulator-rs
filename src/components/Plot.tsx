@@ -49,7 +49,7 @@ const Plot: FC = () => {
             (dataMax: number) => Math.round(dataMax),
           ]}
         />
-        <YAxis type="number" dataKey="y" domain={[0, 1]} />
+        <YAxis type="number" dataKey="y" domain={[-0.5, 1.5]} />
         <ZAxis range={[10]}></ZAxis>
         <Tooltip cursor={{ strokeDasharray: '3 3' }}></Tooltip>
         <Scatter
