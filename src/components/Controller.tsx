@@ -10,32 +10,6 @@ const Controller = () => {
       <div className="ml-4">
         <div className="mb-2">
           <div>
-            <label htmlFor="param-tR">Tr (eV)</label>
-          </div>
-          <div className="flex items-end">
-            <input
-              id="param-tR"
-              type="number"
-              className="form-input w-20 pr-0"
-              defaultValue={config.tR}
-              onChange={(e) => {
-                setConfig((v) => ({ ...v, tR: Number(e.target.value) }));
-              }}
-            ></input>
-            <span className="mx-2">x10</span>
-            <input
-              id="param-tRExp"
-              type="number"
-              className="form-input w-20 pr-0"
-              defaultValue={config.tRExp}
-              onChange={(e) => {
-                setConfig((v) => ({ ...v, tRExp: Number(e.target.value) }));
-              }}
-            ></input>
-          </div>
-        </div>
-        <div className="mb-2">
-          <div>
             <label htmlFor="param-tV">Tv (eV)</label>
           </div>
           <div className="flex items-end">
@@ -56,6 +30,32 @@ const Controller = () => {
               defaultValue={config.tVExp}
               onChange={(e) => {
                 setConfig((v) => ({ ...v, tVExp: Number(e.target.value) }));
+              }}
+            ></input>
+          </div>
+        </div>
+        <div className="mb-2">
+          <div>
+            <label htmlFor="param-tR">Tr (eV)</label>
+          </div>
+          <div className="flex items-end">
+            <input
+              id="param-tR"
+              type="number"
+              className="form-input w-20 pr-0"
+              defaultValue={config.tR}
+              onChange={(e) => {
+                setConfig((v) => ({ ...v, tR: Number(e.target.value) }));
+              }}
+            ></input>
+            <span className="mx-2">x10</span>
+            <input
+              id="param-tRExp"
+              type="number"
+              className="form-input w-20 pr-0"
+              defaultValue={config.tRExp}
+              onChange={(e) => {
+                setConfig((v) => ({ ...v, tRExp: Number(e.target.value) }));
               }}
             ></input>
           </div>
