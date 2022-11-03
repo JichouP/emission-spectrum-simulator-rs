@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "emission-spectrum-simulator-rs",
+    "productName": "emission-spectrum-simulator",
     "version": "0.1.0"
   },
   "tauri": {
