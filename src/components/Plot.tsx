@@ -9,8 +9,8 @@ import 'uplot/dist/uPlot.min.css';
 
 const options: uPlot.Options = {
   title: 'Chart',
-  width: 1200,
-  height: 900,
+  width: Math.round(window.innerWidth * 0.8),
+  height: Math.round(window.innerHeight * 0.8),
   series: [
     {
       label: 'wave length',
@@ -63,8 +63,6 @@ const Plot: FC = () => {
     });
   }, [config]);
 
-  console.log(createData(data, csvData));
-
   return (
     <UplotReact options={options} data={createData(data, csvData)}></UplotReact>
   );
@@ -77,7 +75,6 @@ const createData = (
   const xListUniqSorted = [...new Set(xList)].sort();
 
   const yList: (number | null)[][] = dataList.map((data) => {
-    // console.log(data);
     return xListUniqSorted.map((x) => {
       const index = data.findIndex((v) => v.x === x);
       if (index === -1) {
