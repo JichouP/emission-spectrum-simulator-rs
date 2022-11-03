@@ -13,23 +13,27 @@ export type CalcConfig = {
   numberOfDivisionExp: number;
   fwhm: number;
   fwhmExp: number;
+  offset: number;
+  offsetExp: number;
 };
 
 const calcConfigState = atom<CalcConfig>({
   key: 'plotConfig',
   default: {
-    tR: 1,
-    tRExp: -1,
-    tV: 1,
-    tVExp: -1,
+    tR: 10,
+    tRExp: -2,
+    tV: 20,
+    tVExp: -2,
     waveLengthStart: 200,
     waveLengthStartExp: -9,
     waveLengthRange: 12,
     waveLengthRangeExp: -9,
     numberOfDivision: 4,
     numberOfDivisionExp: 2,
-    fwhm: 1,
-    fwhmExp: -9,
+    fwhm: 8,
+    fwhmExp: -10,
+    offset: 0,
+    offsetExp: -2,
   },
 });
 

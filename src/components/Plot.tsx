@@ -49,12 +49,15 @@ const Plot: FC = () => {
             (dataMax: number) => Math.round(dataMax),
           ]}
         />
-        <YAxis type="number" dataKey="y" domain={[0, 1]} />
+        <YAxis type="number" dataKey="y" domain={[-0.5, 1.5]} />
         <ZAxis range={[10]}></ZAxis>
         <Tooltip cursor={{ strokeDasharray: '3 3' }}></Tooltip>
         <Scatter
           name="Result"
-          data={data}
+          data={data.map(({ x, y }) => ({
+            x: x + config.offset * Math.pow(10, config.offsetExp),
+            y,
+          }))}
           fill="#8884d8"
           isAnimationActive={false}
           line

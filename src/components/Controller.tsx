@@ -182,6 +182,32 @@ const Controller = () => {
             ></input>
           </div>
         </div>
+        <div className="mb-2">
+          <div>
+            <label htmlFor="param-offset">offset</label>
+          </div>
+          <div className="flex items-end">
+            <input
+              id="param-offset"
+              type="number"
+              className="form-input w-20 pr-0"
+              defaultValue={config.offset}
+              onChange={(e) => {
+                setConfig((v) => ({ ...v, offset: Number(e.target.value) }));
+              }}
+            ></input>
+            <span className="mx-2">x10</span>
+            <input
+              id="param-offsetExp"
+              type="number"
+              className="form-input w-20 pr-0"
+              defaultValue={config.offsetExp}
+              onChange={(e) => {
+                setConfig((v) => ({ ...v, offsetExp: Number(e.target.value) }));
+              }}
+            ></input>
+          </div>
+        </div>
       </div>
     </div>
   );
