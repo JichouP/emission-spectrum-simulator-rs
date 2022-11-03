@@ -1,18 +1,39 @@
 import { FC, useEffect, useState } from 'react';
-import {
-  CartesianGrid,
-  ResponsiveContainer,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  ZAxis,
-} from 'recharts';
 import fetchCalculate from '../cmd/fetchCalculate';
 import { useRecoilState } from 'recoil';
 import calcConfigState from '../atoms/calcConfigState';
 import csvDataState, { CsvData } from '../atoms/csvDataState';
+import UplotReact from 'uplot-react';
+import uPlot from 'uplot';
+import 'uplot/dist/uPlot.min.css';
+
+const options: uPlot.Options = {
+  title: 'Chart',
+  width: 1200,
+  height: 900,
+  series: [
+    {
+      label: 'wave length',
+    },
+    {
+      label: 'Theoretical value',
+      stroke: 'blue',
+      width: 1,
+      spanGaps: true,
+    },
+    {
+      label: 'Experimental value',
+      stroke: 'red',
+      width: 1,
+      spanGaps: true,
+    },
+  ],
+  scales: {
+    x: {
+      time: false,
+    },
+  },
+};
 
 const Plot: FC = () => {
   const [config] = useRecoilState(calcConfigState);
@@ -32,46 +53,42 @@ const Plot: FC = () => {
         config.numberOfDivision * Math.pow(10, config.numberOfDivisionExp),
       fwhm: config.fwhm * Math.pow(10, config.fwhmExp),
     };
-    fetchCalculate(newConfig).then(setData);
+    fetchCalculate(newConfig).then((v) => {
+      setData(
+        v.map(({ x, y }) => ({
+          x: x + config.offset * Math.pow(10, config.offsetExp),
+          y,
+        }))
+      );
+    });
   }, [config]);
 
+  console.log(createData(data, csvData));
+
   return (
-    <ResponsiveContainer>
-      <ScatterChart>
-        <CartesianGrid />
-        <XAxis
-          type="number"
-          dataKey="x"
-          name="Wavelength"
-          unit="nm"
-          domain={[
-            (dataMin: number) => Math.round(dataMin),
-            (dataMax: number) => Math.round(dataMax),
-          ]}
-        />
-        <YAxis type="number" dataKey="y" domain={[-0.5, 1.5]} />
-        <ZAxis range={[10]}></ZAxis>
-        <Tooltip cursor={{ strokeDasharray: '3 3' }}></Tooltip>
-        <Scatter
-          name="Result"
-          data={data.map(({ x, y }) => ({
-            x: x + config.offset * Math.pow(10, config.offsetExp),
-            y,
-          }))}
-          fill="#8884d8"
-          isAnimationActive={false}
-          line
-        />
-        <Scatter
-          name="Experiment"
-          data={csvData}
-          fill="#d88a84"
-          isAnimationActive={false}
-          line
-        />
-      </ScatterChart>
-    </ResponsiveContainer>
+    <UplotReact options={options} data={createData(data, csvData)}></UplotReact>
   );
+};
+
+const createData = (
+  ...dataList: { x: number; y: number }[][]
+): [number[], (number | null)[], (number | null)[]] => {
+  const xList = dataList.flatMap((v) => v.map(({ x }) => x));
+  const xListUniqSorted = [...new Set(xList)].sort();
+
+  const yList: (number | null)[][] = dataList.map((data) => {
+    // console.log(data);
+    return xListUniqSorted.map((x) => {
+      const index = data.findIndex((v) => v.x === x);
+      if (index === -1) {
+        return null;
+      } else {
+        return data[index].y;
+      }
+    });
+  });
+
+  return [xListUniqSorted, yList[0], yList[1]];
 };
 
 export default Plot;

@@ -15,8 +15,9 @@
     "@tauri-apps/api": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "recharts": "^2.1.16",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "uplot": "^1.6.22",
+    "uplot-react": "^1.1.1"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
