@@ -17,8 +17,8 @@ tauri-build = { version = "1.1.1", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.1.1", features = ["dialog-open"] }
-emission-spectrum-lib-rs = { git = "https://github.com/JichouP/emission-spectrum-lib-rs", rev = "5bb37c4" }
+tauri = { version = "1.2.2", features = ["dialog-open"] }
+emission-spectrum-lib-rs = { git = "https://github.com/JichouP/emission-spectrum-lib-rs", rev = "8e23d3b" }
 csv = "1.1.6"
 
 [features]
