@@ -53,7 +53,13 @@ const Plot: FC = () => {
         config.numberOfDivision * Math.pow(10, config.numberOfDivisionExp),
       fwhm: config.fwhm * Math.pow(10, config.fwhmExp),
     };
-    fetchCalculate(newConfig).then((v) => {
+    fetchCalculate(newConfig).then(v => {
+      // return v; // Δv=0,1
+      // return v.filter(v => v.x < 206); // Δv=0
+      const filterd = v.filter(v => v.x > 206); // Δv=1
+      const max = Math.max(...filterd.map(v => v.y));
+      return filterd.map(({ x, y }) => ({ x, y: y / max }))
+    }).then((v) => {
       setData(
         v.map(({ x, y }) => ({
           x: x + config.offset * Math.pow(10, config.offsetExp),
